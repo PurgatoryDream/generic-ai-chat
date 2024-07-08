@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}Settings{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container mt-3">
+    <!-- Tabs for different subsections -->
+    <ul class="nav nav-tabs" id="settingsTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="ui-tab" data-toggle="tab" href="#ui" role="tab" aria-controls="ui" aria-selected="true">UI</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="model-tab" data-toggle="tab" href="#model" role="tab" aria-controls="model" aria-selected="false">Model</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="prompts-tab" data-toggle="tab" href="#prompts" role="tab" aria-controls="prompts" aria-selected="false">Prompts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="others-tab" data-toggle="tab" href="#others" role="tab" aria-controls="others" aria-selected="false">Others</a>
+        </li>
+    </ul>
+    
+    <!-- Tab panes for each subsection -->
+    <div class="tab-content" id="settingsTabContent">
+        <!-- UI Settings Pane -->
+        <div class="tab-pane fade show active" id="ui" role="tabpanel" aria-labelledby="ui-tab">
+            <button type="button" id="color-collapsible" onclick="showColors()">Color Palette</button>
+            <div id="color-palette-container" style="display:none;">
+                <p><input type="color" value="{{ theme.bodyBackgroundColor }}" id="bodyBackgroundColor">Background</p>
+                <p><input type="color" value="{{ theme.bodyTextColor }}" id="bodyTextColor">Text</p>
+                <p><input type="color" value="{{ theme.navbarBackgroundColor }}" id="navbarBackgroundColor">Navigation Bar (Background)</p>
+                <p><input type="color" value="{{ theme.navbarTextColor }}" id="navbarTextColor">Navigation Bar (Text)</p>
+                <p><input type="color" value="{{ theme.chatBoxBackgroundColor }}" id="chatBoxBackgroundColor">Chat Box (Background)</p>
+                <p><input type="color" value="{{ theme.chatReceivedMessageBackgroundColor }}" id="chatReceivedMessageBackgroundColor">Received Message (Background)</p>
+                <p><input type="color" value="{{ theme.chatReceivedMessageTextColor }}" id="chatReceivedMessageTextColor">Received Message (Text)</p>
+                <p><input type="color" value="{{ theme.chatSentMessageBackgroundColor }}" id="chatSentMessageBackgroundColor">Sent Message (Background)</p>
+                <p><input type="color" value="{{ theme.chatSentMessageTextColor }}" id="chatSentMessageTextColor">Sent Message (Text)</p>
+                <p><input type="color" value="{{ theme.clearButtonColor }}" id="clearButtonColor">Clear Button (Background)</p>
+                <p><input type="color" value="{{ theme.clearButtonHoverColor }}" id="clearButtonHoverColor">Clear Button (Hover)</p>
+                <p><input type="color" value="{{ theme.clearButtonTextColor }}" id="clearButtonTextColor">Clear Button (Text)</p>
+                <p><input type="color" value="{{ theme.addFileButtonColor }}" id="addFileButtonColor">Add File Button (Background)</p>
+                <p><input type="color" value="{{ theme.addFileButtonHoverColor }}" id="addFileButtonHoverColor">Add File Button (Hover)</p>
+                <p><input type="color" value="{{ theme.addFileButtonTextColor }}" id="addFileButtonTextColor">Add File Button (Text)</p>
+                <p><input type="color" value="{{ theme.retryLastButtonColor }}" id="retryLastButtonColor">Retry Last Button (Background)</p>
+                <p><input type="color" value="{{ theme.retryLastButtonHoverColor }}" id="retryLastButtonHoverColor">Retry Last Button (Hover)</p>
+                <p><input type="color" value="{{ theme.retryLastButtonTextColor }}" id="retryLastButtonTextColor">Retry Last Button (Text)</p>
+                <p><input type="color" value="{{ theme.microphoneButtonColor }}" id="microphoneButtonColor">Microphone Button (Background)</p>
+                <p><input type="color" value="{{ theme.microphoneButtonHoverColor }}" id="microphoneButtonHoverColor">Microphone Button (Hover)</p>
+                <p><input type="color" value="{{ theme.sendButtonColor }}" id="sendButtonColor">Send Button (Background)</p>
+                <p><input type="color" value="{{ theme.sendButtonHoverColor }}" id="sendButtonHoverColor">Send Button (Hover)</p>
+            </div>
+
+            <div class="setting-actions">
+                <button id="ui-tab-discard" class="btn btn-secondary" onclick="window.location.reload();">Discard</button>
+                <button id="ui-tab-save" class="btn btn-primary" onclick="updateUISettings()">Save</button>
+            </div>
+        </div>
+        
+        <!-- Model Settings Pane -->
+        <div class="tab-pane fade" id="model" role="tabpanel" aria-labelledby="model-tab">
+            <div class="setting">
+                <label>Language Model (Chat)</label>
+                <select name="llm_chat" id="llm_chat">
+                    {% for model in models %}
+                    {% if model == config.model %}
+                    <option value="{{ model }}" selected>{{ model }}</option>
+                    {% else %}
+                    <option value="{{ model }}">{{ model }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                <br>
+                <div class="setting">
+                    <label>OpenAI API Key</label>
+                    <input type="text" name="openai_apikey" id="openai_apikey" class="form-control">
+                </div>
+
+                <div class="setting">
+                    <label>Google Application Credentials</label>
+                    <input type="file" name="googleapp_creds" id="googleapp_creds" class="form-control" accept=".txt,.json">
+                </div>
+            </div>
+
+            <div class="setting-actions">
+                <button id="model-tab-discard" class="btn btn-secondary" onclick="window.location.reload();">Discard</button>
+                <button id="model-tab-save" class="btn btn-primary" onclick="updateModelSettings()">Save</button>
+            </div>
+        </div>
+        <!-- Prompts Settings Pane -->
+        <div class="tab-pane fade" id="prompts" role="tabpanel" aria-labelledby="prompts-tab">
+            
+        </div>
+        <!-- Others Settings Pane -->
+        <div class="tab-pane fade" id="others" role="tabpanel" aria-labelledby="others-tab">
+            
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}

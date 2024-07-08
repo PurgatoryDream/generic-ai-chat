@@ -1,0 +1,21 @@
+/* chat.css */
+html, body {
+    background-color: var(--bodyBackgroundColor);
+    color: var(--bodyTextColor);
+    height: 95vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: var(--navbarBackgroundColor);
+    color: var(--navbarTextColor);
+    height: 5vh; 
+}
+
+#image-display {
+    width: 512px;
+    height: 512px;
+    background-color: grey;
+    margin: auto;
+    display: block;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}Chat Application{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pipeline.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <!-- Lista vertical de bloques -->
+        <div class="col-md-8" id="block-list">
+            <h4>Workflow</h4>
+            <button class="btn btn-primary mb-2" onclick="addNewBlock()">Add New Block</button>
+            <div id="blocks-container">
+                <!-- Aquí se añadirán los bloques -->
+            </div>
+        </div>
+
+        <!-- Panel de configuración del bloque a la derecha -->
+        <div class="col-md-4 col-xs-12" id="block-config-panel">
+            <h4>Block Configuration</h4>
+            <div id="block-config-content">
+                <!-- Opciones de configuración del bloque -->
+                <div id="dynamic-options-container"></div>
+            </div>
+            <button class="btn btn-success" id="save-config">Save Changes</button>
+            <button class="btn btn-danger" id="cancel-config">X</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/pipeline.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,75 @@
+/* documents.css */
+.documents-section {
+    margin: 1rem;
+}
+
+.navbar {
+    height: 5vh; 
+}
+
+.group {
+    border-bottom: 1px solid #000;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.group-header {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+  
+.group-checkbox {
+    margin-left: 20px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.group:last-child {
+    border-bottom: none;
+}
+
+.group-header h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.files {
+    display: flex;
+    flex-wrap: wrap; /* Allows file items to wrap */
+    align-items: center;
+    gap: 0.5rem; /* Adds space between file items */
+}
+
+.file {
+    border: 1px solid #000;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    flex: 0 0 auto; /* Prevents the file items from stretching */
+}
+
+.btn-outline-secondary {
+    border: 1px dashed #000;
+    padding: 0.5rem 1rem; /* Adjust padding to match the file items */
+}
+
+/* Full-width button for adding a new group */
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+@media (max-width: 580px) {
+    .navbar {
+        height: auto;
+        min-height: 5vh;
+    }
+}

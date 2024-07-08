@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}Documents{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/documents.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container mt-3">
+    <div class="documents-section">
+        {% for group in groups %}
+        <div class="group">
+            <div class="group-header">
+                <h3>{{ group.group_display_name }}</h3>
+                <div class="checkbox-container">
+                    {% if group.checked %}
+                    <input type="checkbox" class="group-checkbox" data-group-name="{{ group.group_name }}" onchange="handleGroupCheckboxChange(this)" checked>
+                    {% else %}
+                    <input type="checkbox" class="group-checkbox" data-group-name="{{ group.group_name }}" onchange="handleGroupCheckboxChange(this)">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="files">
+                {% for file in group.files %}
+                <div class="file">{{ file }}</div>
+                {% endfor %}
+                <button class="btn btn-outline-secondary" data-group-name="{{ group.group_name }}" onclick="openFileSelector('{{ group.group_name }}')">+</button>
+                <input type="file" id="{{ 'file-input-' + group.group_name }}" style="display: none;" onchange="uploadFile(this, '{{ group.group_name }}')">
+            </div>
+          </div>
+        {% endfor %}
+        
+        <!-- Add New Group Button -->
+        <div class="mt-3">
+            <button class="btn btn-primary btn-block" onclick="toggleAddGroupForm()">Add New Group...</button>
+        </div>
+
+        <!-- Add New Group Form -->
+        <div class="add-group-form mt-3" style="display: none;">
+            <input type="text" id="new-group-name" placeholder="Group Name" class="form-control mb-2">
+            <textarea id="new-group-description" placeholder="Group Description" class="form-control mb-2"></textarea>
+            <button class="btn btn-success" onclick="submitNewGroup()">Create Group</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/documents.js') }}"></script>
+{% endblock %}

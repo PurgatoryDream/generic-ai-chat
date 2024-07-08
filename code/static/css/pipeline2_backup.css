@@ -1,0 +1,47 @@
+html, body {
+    background-color: var(--bodyBackgroundColor);
+    color: var(--bodyTextColor);
+    height: 95vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: var(--navbarBackgroundColor);
+    color: var(--navbarTextColor);
+    height: 5vh; 
+}
+
+#block-config-panel {
+    position: fixed; /* Fijo en la pantalla */
+    right: 0; /* Alineado a la derecha */
+    top: 0; /* Desde la parte superior */
+    bottom: 0; /* Hasta la parte inferior */
+    width: 300px; /* Ancho fijo */
+    background-color: #ffffff;
+    overflow-y: auto; /* Desplazamiento si el contenido es largo */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Asegurar que se muestre por encima de otros elementos */
+    transform: translateX(100%); /* Oculto inicialmente fuera de la pantalla */
+    transition: transform 0.3s ease-in-out; /* Transición suave al abrir/cerrar */
+}
+
+#blocks-container .block {
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    #block-config-panel {
+        width: 100%; /* Ancho completo en pantallas pequeñas */
+    }
+}
+
+#save-config, #cancel-config {
+    margin-top: 10px;
+}

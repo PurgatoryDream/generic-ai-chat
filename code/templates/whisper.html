@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}Chat Application{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/whisper.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/diff_match_patch.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <h1><img src="{{ url_for('static', filename='images/logos/avvalelogo.png') }}" alt="Avvale" width="50" height="50"> Transcriptions</h1>
+        <div class="row d-flex">
+            <!-- Subida de audio -->
+            <div class="col-md-6 d-flex">
+            <div class="card flex-column flex-grow-1">
+                <h2>Upload Audio</h2>
+                <form action="/transcribe/audio" method="POST" enctype="multipart/form-data" class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <input type="file" name="file" accept="audio/*" onchange="previewAudio(this);" />
+                        <audio id="audioPlayer" controls></audio>
+                    </div>
+                    <input type="submit" class="submit-btn" value="Transcribe"/>
+                </form>
+                <textarea id="transcript" class="mt-auto"></textarea>
+            </div>
+            </div>
+
+            <!-- Subida de texto -->
+            <div class="col-md-6 d-flex">
+            <div class="card flex-column flex-grow-1">
+                <h2>Upload Text</h2>
+                <form action="/transcribe/text" method="POST" enctype ="multipart/form-data">
+                    <div>
+                        <input type="file" name="file" accept=".txt,.docx" />
+                    </div>
+                    <input type="submit" class="submit-btn" value="Extract Text"/>
+                </form>
+                <textarea id="text" class="mt-auto"></textarea>
+            </div>
+            </div>
+        </div>
+
+        <!-- Comparación de texto -->
+        <br>
+        <div id="botones-info-comparacion">
+            <button class="submit-btn" id="submitCompare" onclick="compare()">Compare</button>
+            <button type="button" class="btn btn-info" id="infoButton" data-bs-toggle="popover" data-bs-trigger="hover focus">
+                Info
+            </button> 
+        </div>
+         
+        <hr>
+        <div id="comparison"></div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/whisper.js') }}"></script>
+{% endblock %}

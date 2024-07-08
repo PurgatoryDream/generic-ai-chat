@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}Chat Application{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <!-- Company Logo and Name for Desktop -->
+        <div class="col-md-4 d-none d-md-flex align-items-center justify-content-center">
+            <div class="company-info text-center">
+                <img src="{{ url_for('static', filename='images/logos/avvalelogo.png') }}" alt="Company Logo" class="logo">
+                <h1>Avvale</h1>
+            </div>
+        </div>
+        
+        <!-- Chat Column -->
+        <div class="col-md-8 d-flex flex-column">
+            <div class="chat-box flex-grow-1 d-flex flex-column">
+                <!-- Company Logo and Name for Mobile -->
+                <div class="chat-header d-md-none">
+                    <img src="{{ url_for('static', filename='images/logos/avvalelogo.png') }}" alt="Company Logo" class="logo-small">
+                    <h1>Avvale</h1>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-body flex-grow-1" id="chatBox">
+                </div>
+
+                <div class="chat-footer">
+                    <div class="input-group">
+                        <!-- Microphone Icon -->
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary microphonebutton" id="speech-button" type="button">
+                                <img src="{{ url_for('static', filename='images/icons/mic.png') }}" alt="Microphone" class="icon">
+                            </button>
+                        </div>
+
+                        <!-- Text Input -->
+                        <input type="text" id="inputText" class="form-control" placeholder="Write here...">
+
+                        <!-- Send Button -->
+                        <div class="input-group-append">
+                            <button class="btn btn-primary sendbutton" id="sendButton" type="button">
+                                <img src="{{ url_for('static', filename='images/icons/send.png') }}" alt="Send" class="icon">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Other Buttons -->
+                    <div class="button-row mt-2">
+                        <button class="btn btn-secondary btn-block clearbutton" id="clearButton">Clear</button>
+                        <button class="btn btn-success btn-block addfilebutton" id="addFileButton">Add File</button>
+                        <button class="btn btn-warning btn-block retrylastbutton" id="retryLastButton">Retry Last</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

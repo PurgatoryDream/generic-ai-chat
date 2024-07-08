@@ -1,0 +1,78 @@
+html, body {
+    background-color: var(--bodyBackgroundColor);
+    color: var(--bodyTextColor);
+    height: 95vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: var(--navbarBackgroundColor);
+    color: var(--navbarTextColor);
+    height: 5vh; 
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #375171;
+}
+
+h2, button {
+    color: #b8ebad;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border: none;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.submit-btn {
+    background-color: #b8ebad;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+#botones-info-comparacion {
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.submit-btn#submitCompare {
+    margin-right: 2%;
+    width: 80%;
+}
+
+#infoButton {
+    padding: 12px;
+    width: 10%;
+}
+
+.submit-btn:hover {
+    background-color: #375171;
+}
+
+textarea {
+    resize: vertical;
+    min-width: 100%;
+    max-height: 300px;
+    overflow: auto;
+}
+
+#audioPlayer {
+    margin-bottom: 0;
+}

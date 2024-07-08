@@ -1,0 +1,148 @@
+html, body {
+    background-color: var(--bodyBackgroundColor);
+    color: var(--bodyTextColor);
+    height: 95vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: var(--navbarBackgroundColor);
+    color: var(--navbarTextColor);
+    height: 5vh; 
+}
+
+.block {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 200px; /* Fixed width for compactness */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: adds shadow for better visibility */
+    display: flex; /* Use flex layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items */
+    position: relative; /* For absolute positioning of children */
+}
+
+.block-header, .block-options, .block-description {
+    z-index: 1;
+}
+
+.block-header {
+    width: 100%; /* Ensure the header takes the full width of the block */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.block-title {
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center; /* Center the title */
+}
+
+.block-controls {
+    display: flex;
+    align-items: center;
+}
+
+.block-edit-btn, .block-remove-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.block-description {
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.block-inputs, .block-outputs {
+    display: flex;
+    justify-content: center; /* Center IO buttons horizontally */
+    align-items: center; /* Center IO buttons vertically */
+    flex-grow: 1; /* Allow inputs/outputs to take up equal space */
+}
+
+.io-button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ccc;
+    position: absolute; /* Absolute position to place on the container edges */
+    z-index: 0; /* Place connectors below the block content */
+}
+
+.io-label {
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 50px;
+    transform: translate(-50%, -50%);
+}
+
+.io-container .io-button,
+.io-container .io-label {
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
+.io-container .io-button,
+.io-container .io-label {
+    right: 0;
+    transform: translate(100%, -50%);
+}
+
+/* Vertically stack the IO buttons */
+.block .io-container {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+}
+
+.block .io-container.io-output {
+    align-items: flex-end;
+}
+
+#block-template {
+    display: none;
+}
+
+#block-selection-panel {
+    border-right: 2px solid #ddd;
+    padding: 10px;
+    height: calc(100vh - 56px); /* Adjust the height to fit the viewport */
+    overflow-y: auto; /* Scrollable if many block types are available */
+}
+
+#block-types-list li {
+    cursor: pointer;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #f8f8f8;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+}
+
+#block-types-list li:hover {
+    background-color: #e7e7e7;
+}
+
+#pipeline-canvas {
+    padding: 10px;
+    height: calc(100vh - 56px);
+    background-color: #f5f5f5;
+    overflow: auto; /* Allows scrolling if the canvas gets crowded */
+}
+
+.block {
+    position: absolute; /* Blocks can be positioned anywhere on the canvas */
+    cursor: move; /* Indicates that blocks can be moved */
+}

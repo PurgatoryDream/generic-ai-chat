@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}Chat Application{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pipeline.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <h1>New Workflow</h1>
+    <div class="row">
+
+        <!-- Block Menu (Collapsible) -->
+        <div class="col-md-3">
+            <div id="blockMenu" class="block-menu collapse-horizontal show">
+                <h2>Available Blocks</h2>
+                <div id="blockMenuContent">
+                    <!-- Block options will be populated here -->
+                </div>
+            </div>
+            <i class="fa fa-arrow-left toggle-btn" data-toggle="collapse" data-target="#blockMenu"></i>
+        </div>
+
+        <!-- Pipeline Area -->
+        <div class="col-md-6">
+            <div class="pipeline-area">
+                <h2>Pipeline</h2>
+                <!-- Selected blocks will be displayed here -->
+            </div>
+        </div>
+
+        <!-- Settings Area (Collapsible) -->
+        <div class="col-md-3">
+            <div id="settingsArea" class="settings-area collapse-horizontal">
+                <h2>Block Settings</h2>
+                <!-- Settings for the selected block will be displayed here -->
+            </div>
+            <i class="fa fa-arrow-right toggle-btn" data-toggle="collapse" data-target="#settingsArea"></i>
+        </div>
+
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/pipeline.js') }}"></script>
+{% endblock %}

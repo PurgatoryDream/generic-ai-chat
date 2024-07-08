@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block title %}Chat Application{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pipeline.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="block" id="block-template">
+    <div class="block-header">
+        <span class="block-title">Block Title</span>
+        <div class="block-controls">
+            <button class="block-edit-btn">&#9998;</button>
+            <button class="block-remove-btn">&times;</button>
+        </div>
+    </div>
+    <div class="block-description">Block Description</div>
+    <div class="block-options"></div>
+</div>
+<div id="blocks-container">
+</div>
+
+<!-- Block Canvas -->
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-4" id="block-selection-panel">
+            <h4>Available Blocks</h4>
+            <ul id="block-types-list" class="list-unstyled">
+                <!-- Block types will be loaded here -->
+            </ul>
+        </div>
+        <div class="col-md-8" id="pipeline-canvas">
+            <h4>Pipeline Canvas</h4>
+            <!-- Blocks will be placed here -->
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pipeline.js') }}"></script>
+{% endblock %}

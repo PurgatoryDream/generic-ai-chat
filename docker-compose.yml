@@ -1,0 +1,42 @@
+---
+version: '3.4'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./code:/src/app
+    ports:
+      - 5000:5000
+    environment:
+      - PG_DBNAME=vectordb
+      - PG_USER=userchat
+      - PG_HOST=db
+      - PG_PASSWORD=userchat
+      - PG_AUTH_METHOD=trust
+    networks:
+      - app_network
+
+  db:
+    hostname: db
+    image: ankane/pgvector
+    ports:
+     - 5432:5432
+    restart: always
+    environment:
+      - POSTGRES_DB=vectordb
+      - POSTGRES_USER=userchat
+      - POSTGRES_PASSWORD=userchat
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./setup/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+     - app_network
+
+volumes:
+  weaviate_data:
+
+networks:
+  app_network:

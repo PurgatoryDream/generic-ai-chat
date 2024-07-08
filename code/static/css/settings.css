@@ -1,0 +1,68 @@
+/* settings.css */
+.setting {
+    margin-bottom: 1rem;
+}
+
+.navbar {
+    height: 5vh; 
+}
+
+.setting label {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.setting-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.setting-actions .btn {
+    margin-left: .5rem;
+}
+
+.tab-pane {
+    padding-top: 10px;
+}
+
+#color-collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active-collapsible, #collapsible:hover {
+    background-color: #ccc;
+}
+
+#color-palette-container {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    transition: max-height 0.2s ease-out;
+    padding-bottom: 10px;
+}
+
+#color-palette-container input {
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+#color-palette-container p {
+    margin: 0;
+}
+
+@media (max-width: 580px) {
+    .navbar {
+        height: auto;
+        min-height: 5vh;
+    }
+}
